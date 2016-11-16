@@ -16,4 +16,13 @@ public interface HttpContents
     String SUCCESS = "0";
     String ERROR = "1";
     String FAIL = "2";
+
+    //登录
+    String API_LOGIN = "/api/?m=api&c=&a=login_do";
+
+    //注册
+    String API_REGISTER = "";
+
+    //忘记密码
+    String API_FEEDBACK_PWD = "";
 }

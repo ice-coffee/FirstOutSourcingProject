@@ -20,6 +20,8 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     private EditText etUserName;
     private EditText etPassword;
+    private Button btRegister;
+    private Button btFp;
     private Button btLogin;
 
     @Override
@@ -31,10 +33,14 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     @Override
     protected void initViewsAndEvents()
     {
-        etUserName = (EditText) findViewById(R.id.et_username);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btLogin = (Button) findViewById(R.id.bt_login);
+        etUserName = (EditText) findViewById(R.id.username);
+        etPassword = (EditText) findViewById(R.id.password);
+        btRegister = (Button) findViewById(R.id.register);
+        btFp = (Button) findViewById(R.id.forget_password);
+        btLogin = (Button) findViewById(R.id.login);
 
+        btRegister.setOnClickListener(this);
+        btFp.setOnClickListener(this);
         btLogin.setOnClickListener(this);
 
         loginPresenter = new LoginPresenter(this, this);
@@ -51,8 +57,17 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     {
         switch (v.getId())
         {
+            case R.id.register:
+                loginPresenter.toRegitser();
+                break;
+
+            case R.id.forget_password:
+                loginPresenter.toFeedBackPwd();
+                break;
+
             case R.id.bt_login:
-                loginPresenter.loginPresenter();
+                loginPresenter.toLogin();
+                break;
         }
     }
 
