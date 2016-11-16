@@ -41,11 +41,17 @@ public class LoginPresenter
         this.context = context;
         this.loginView = loginView;
 
+        initUtils();
+    }
+
+    /**
+     * initialize function class
+     */
+    private void initUtils()
+    {
         apiInterface = RetrofitFactory.getInstance().create(ApiInterfaces.class);
 
         apiService = new ApiService();
-
-
     }
 
     /**
@@ -53,12 +59,14 @@ public class LoginPresenter
      */
     public void toLogin()
     {
-        if (apiInterface != null && apiService != null)
+        if (null == apiInterface || null == apiService)
         {
-            Observable observable = apiInterface.toLogin(loginView.getUserName(), loginView.getPassword());
-
-            apiService.ApiRequest(new HttpRequestSubscriber(context, loginCBListener), observable);
+            initUtils();
         }
+
+        Observable observable = apiInterface.toLogin(loginView.getUserName(), loginView.getPassword());
+
+        apiService.ApiRequest(new HttpRequestSubscriber(context, loginCBListener), observable);
     }
 
     /**
@@ -66,12 +74,14 @@ public class LoginPresenter
      */
     public void toRegitser()
     {
-        if (apiInterface != null && apiService != null)
+        if (null == apiInterface || null == apiService)
         {
-            Observable observable = apiInterface.toRegister(loginView.getUserName(), loginView.getPassword());
-
-            apiService.ApiRequest(new HttpRequestSubscriber(context, registerCBListener), observable);
+            initUtils();
         }
+
+        Observable observable = apiInterface.toRegister(loginView.getUserName(), loginView.getPassword());
+
+        apiService.ApiRequest(new HttpRequestSubscriber(context, registerCBListener), observable);
     }
 
     /**
@@ -79,12 +89,14 @@ public class LoginPresenter
      */
     public void toFeedBackPwd()
     {
-        if (apiInterface != null && apiService != null)
+        if (null == apiInterface || null == apiService)
         {
-            Observable observable = apiInterface.toFeedBackPWD(loginView.getUserName(), loginView.getPassword());
-
-            apiService.ApiRequest(new HttpRequestSubscriber(context, feedBackCBListener), observable);
+            initUtils();
         }
+
+        Observable observable = apiInterface.toFeedBackPWD(loginView.getUserName(), loginView.getPassword());
+
+        apiService.ApiRequest(new HttpRequestSubscriber(context, feedBackCBListener), observable);
     }
 
     //登录结果回调
