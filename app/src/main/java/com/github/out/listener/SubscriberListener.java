@@ -3,7 +3,7 @@ package com.github.out.listener;
 /**
  * Created by mzp on 2016/9/11.
  */
-public interface SubscriberListener<T>
+public interface SubscriberListener
 {
     /**
      * 请求成功回调

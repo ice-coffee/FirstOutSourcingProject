@@ -9,6 +9,7 @@ import com.github.out.http.retrofit.RetrofitFactory;
 import com.github.out.http.retrofit.api.ApiInterfaces;
 import com.github.out.http.retrofit.api.ApiService;
 import com.github.out.listener.SubscriberListener;
+import com.github.out.source.LoginDataSource;
 import com.github.out.view.LoginView;
 import com.google.gson.Gson;
 
@@ -30,6 +31,9 @@ public class LoginPresenter
 
     private ApiInterfaces apiInterface;
 
+    //login data source
+    private LoginDataSource loginDataSource;
+
     /**
      * initialize
      *
@@ -42,6 +46,8 @@ public class LoginPresenter
         this.loginView = loginView;
 
         initUtils();
+
+        loginDataSource = new LoginDataSource(context, apiService, apiInterface);
     }
 
     /**
@@ -55,48 +61,36 @@ public class LoginPresenter
     }
 
     /**
-     * 登录
+     * 请求登录
      */
-    public void toLogin()
+    public void requestLogin()
     {
-        if (null == apiInterface || null == apiService)
+        if (null != loginDataSource)
         {
-            initUtils();
+            loginDataSource.toLogin(loginCBListener, loginView.getUserName(), loginView.getPassword());
         }
-
-        Observable observable = apiInterface.toLogin(loginView.getUserName(), loginView.getPassword());
-
-        apiService.ApiRequest(new HttpRequestSubscriber(context, loginCBListener), observable);
     }
 
     /**
-     * 注册
+     * 请求注册
      */
-    public void toRegitser()
+    public void requestRegitser()
     {
-        if (null == apiInterface || null == apiService)
+        if (null != loginDataSource)
         {
-            initUtils();
+            loginDataSource.toRegitser(registerCBListener, loginView.getUserName(), loginView.getPassword());
         }
-
-        Observable observable = apiInterface.toRegister(loginView.getUserName(), loginView.getPassword());
-
-        apiService.ApiRequest(new HttpRequestSubscriber(context, registerCBListener), observable);
     }
 
     /**
-     * 忘记密码
+     * 请求找回密码
      */
-    public void toFeedBackPwd()
+    public void requestFeedBackPwd()
     {
-        if (null == apiInterface || null == apiService)
+        if (null != loginDataSource)
         {
-            initUtils();
+            loginDataSource.toFeedBackPwd(feedBackCBListener, loginView.getUserName(), loginView.getPassword());
         }
-
-        Observable observable = apiInterface.toFeedBackPWD(loginView.getUserName(), loginView.getPassword());
-
-        apiService.ApiRequest(new HttpRequestSubscriber(context, feedBackCBListener), observable);
     }
 
     //登录结果回调

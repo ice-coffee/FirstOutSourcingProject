@@ -58,15 +58,15 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         switch (v.getId())
         {
             case R.id.register:
-                loginPresenter.toRegitser();
+                loginPresenter.requestRegitser();
                 break;
 
             case R.id.forget_password:
-                loginPresenter.toFeedBackPwd();
+                loginPresenter.requestFeedBackPwd();
                 break;
 
             case R.id.bt_login:
-                loginPresenter.toLogin();
+                loginPresenter.requestLogin();
                 break;
         }
     }
