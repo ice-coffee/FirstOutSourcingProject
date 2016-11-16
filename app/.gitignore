@@ -1,2 +1,5 @@
 /build
 proguard-rules.pro
+
+# file
+*.iml
