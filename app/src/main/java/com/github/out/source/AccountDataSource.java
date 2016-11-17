@@ -13,7 +13,7 @@ import rx.Observable;
  * Created by mzp on 2016/11/16.
  */
 
-public class LoginDataSource
+public class AccountDataSource
 {
     private Context context;
 
@@ -21,7 +21,7 @@ public class LoginDataSource
 
     private ApiInterfaces apiInterface;
 
-    public LoginDataSource(Context context, ApiService apiService, ApiInterfaces apiInterface)
+    public AccountDataSource(Context context, ApiService apiService, ApiInterfaces apiInterface)
     {
         this.context = context;
         this.apiService = apiService;
@@ -48,11 +48,10 @@ public class LoginDataSource
     {
         if (null != apiInterface && null != apiService)
         {
+            Observable observable = apiInterface.toRegister(userName, pwd);
+
+            apiService.ApiRequest(new HttpRequestSubscriber(context, registerCBListener), observable);
         }
-
-        Observable observable = apiInterface.toRegister(userName, pwd);
-
-        apiService.ApiRequest(new HttpRequestSubscriber(context, registerCBListener), observable);
     }
 
     /**

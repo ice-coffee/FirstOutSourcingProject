@@ -3,6 +3,7 @@
 
     <!--Common start-->
     <string name="net_error">网络中断，请检查您的网络状态</string>
+    <string name="sure">确定</string>
     <!--Common end-->
 
     <!--Login start-->
@@ -12,6 +13,12 @@
     <string name="account_register">注册</string>
     <string name="account_forget_password">忘记密码</string>
     <!--Login end-->
+
+    <!--register start-->
+    <!--register end-->
+
+    <!--forget password start-->
+    <!--forget password end-->
 
     <!--Home start-->
     <string name="guide_first">御姐</string>

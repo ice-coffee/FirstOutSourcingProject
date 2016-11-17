@@ -9,6 +9,7 @@ import com.github.out.http.retrofit.api.ApiInterfaces;
 import com.github.out.http.retrofit.api.ApiService;
 import com.github.out.listener.SubscriberListener;
 import com.github.out.source.AccountDataSource;
+import com.github.out.view.ForgetPwdView;
 import com.github.out.view.LoginView;
 import com.google.gson.Gson;
 
@@ -16,13 +17,13 @@ import com.google.gson.Gson;
 /**
  * Login page control
  */
-public class LoginPresenter
+public class ForgetPwdPresenter
 {
     private final static String TAG = "RetrofitRxxJava";
 
     private Context context;
 
-    private LoginView loginView;
+    private ForgetPwdView forgetPwdView;
 
     private ApiService apiService;
 
@@ -35,12 +36,12 @@ public class LoginPresenter
      * initialize
      *
      * @param context   must from activity
-     * @param loginView
+     * @param forgetPwdView
      */
-    public LoginPresenter(final Context context, final LoginView loginView)
+    public ForgetPwdPresenter(final Context context, final ForgetPwdView forgetPwdView)
     {
         this.context = context;
-        this.loginView = loginView;
+        this.forgetPwdView = forgetPwdView;
 
         initUtils();
 
@@ -58,68 +59,15 @@ public class LoginPresenter
     }
 
     /**
-     * 请求登录
-     */
-    public void requestLogin()
-    {
-        if (null != accountDataSource)
-        {
-            accountDataSource.toLogin(loginCBListener, loginView.getUserName(), loginView.getPassword());
-        }
-    }
-
-    /**
-     * 请求注册
-     */
-    public void requestRegitser()
-    {
-        if (null != accountDataSource)
-        {
-            accountDataSource.toRegitser(registerCBListener, loginView.getUserName(), loginView.getPassword());
-        }
-    }
-
-    /**
      * 请求找回密码
      */
     public void requestFeedBackPwd()
     {
         if (null != accountDataSource)
         {
-            accountDataSource.toFeedBackPwd(feedBackCBListener, loginView.getUserName(), loginView.getPassword());
+            accountDataSource.toFeedBackPwd(feedBackCBListener, forgetPwdView.getUserName(), forgetPwdView.getPassword());
         }
     }
-
-    //登录结果回调
-    private SubscriberListener loginCBListener = new SubscriberListener()
-    {
-        @Override
-        public void onSuccess(String dataMsg)
-        {
-            loginView.loginSuccess(new Gson().fromJson(dataMsg, UserInfos.class));
-        }
-
-        @Override
-        public void onError(String errorMsg)
-        {
-            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    //注册结果回调
-    private SubscriberListener registerCBListener = new SubscriberListener()
-    {
-        @Override
-        public void onSuccess(String dataMsg)
-        {
-        }
-
-        @Override
-        public void onError(String errorMsg)
-        {
-            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show();
-        }
-    };
 
     //忘记密码结果回调
     private SubscriberListener feedBackCBListener = new SubscriberListener()
