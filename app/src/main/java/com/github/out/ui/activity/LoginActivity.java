@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                 loginPresenter.requestFeedBackPwd();
                 break;
 
-            case R.id.bt_login:
+            case R.id.login:
                 loginPresenter.requestLogin();
                 break;
         }

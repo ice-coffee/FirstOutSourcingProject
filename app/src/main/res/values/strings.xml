@@ -12,4 +12,10 @@
     <string name="account_register">注册</string>
     <string name="account_forget_password">忘记密码</string>
     <!--Login end-->
+
+    <!--Home start-->
+    <string name="guide_first">御姐</string>
+    <string name="guide_second">萌妹</string>
+    <string name="guide_third">萝莉</string>
+    <!--Home end-->
 </resources>

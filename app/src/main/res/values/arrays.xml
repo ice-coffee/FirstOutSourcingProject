@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="home_guide">
+        <item>@string/guide_first</item>
+        <item>@string/guide_second</item>
+        <item>@string/guide_third</item>
+    </string-array>
+
+</resources>

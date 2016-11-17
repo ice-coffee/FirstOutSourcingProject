@@ -27,8 +27,8 @@ public class SplashActivity extends BaseActivity
             @Override
             public void run()
             {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-//                finish();
+                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                finish();
             }
         }, 3000);
     }
